@@ -35,6 +35,11 @@ public class VehiculoServiceImpl implements IVehiculoService {
 		return vehiculoFin;
 	}
 
+	@Override
+	public void actualizaEstado(String placa, String estado) {
+		this.vehiculoRepository.actualizaEstado(placa, estado);
+	}
+
 	private VehiculoTo convertir(Vehiculo vehiculo) {
 		VehiculoTo vehiT = new VehiculoTo();
 		vehiT.setId(vehiculo.getId());

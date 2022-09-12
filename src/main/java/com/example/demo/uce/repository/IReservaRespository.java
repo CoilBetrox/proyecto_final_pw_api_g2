@@ -6,5 +6,5 @@ public interface IReservaRespository {
 	
 	public void crearReserva(Reserva reserva);
 	
-
+	public Reserva buscaReservaNumero(Integer nReserva);
 }

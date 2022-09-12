@@ -7,6 +7,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -47,6 +48,17 @@ public class VehiculoRestFullController {
 	@GetMapping(path = "/{placa}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<VehiculoTo> buscaVehiculoPorPlaca(@PathVariable("placa") String placa) {
 		return ResponseEntity.ok(vehiculoService.buscaVehiculoPorPlaca(placa));
+	}
+	
+	@PatchMapping(path = "/disponible")
+	public String actualizaEstado(@PathVariable("placa") String placa, @PathVariable("estado") String estado) {
+		String msj = "Vehiculo actualizado correctamente";
+		try {
+			this.vehiculoService.actualizaEstado(placa, estado);
+		} catch (Exception e) {
+			msj = "Error al actualizar el vehículo" + e;
+		}
+		return msj;
 	}
 
 }

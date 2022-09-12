@@ -18,8 +18,7 @@ public class VehiculoRespositoryImpl implements IVehiculoRepository {
 	
 	@Override
 	public void crear(Vehiculo vehiculo) {
-		this.entityManager.persist(vehiculo);
-		
+		this.entityManager.persist(vehiculo);	
 	}
 
 	@Override
@@ -42,6 +41,15 @@ public class VehiculoRespositoryImpl implements IVehiculoRepository {
 	@Override
 	public void actualiza(Vehiculo vehiculo) {
 		this.entityManager.persist(vehiculo);
+	}
+
+	@Override
+	public void actualizaEstado(String placa, String estado) {
+		Vehiculo aux = buscaVehiculoPorPlaca(placa);
+		if(aux!=null){
+			aux.setDisponible(estado);
+			this.entityManager.merge(aux);
+		}
 	}
 
 

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.uce.repository.IReservaRespository;
 import com.example.demo.uce.repository.modelo.Reserva;
+import com.example.demo.uce.service.to.ReservaTo;
 
 @Service
 public class ReserveServiceImpl implements IReservaService {
@@ -14,7 +15,25 @@ public class ReserveServiceImpl implements IReservaService {
 
 	@Override
 	public void crearReserva(Reserva reserva) {
-		reservaRespository.crearReserva(reserva);
+		this.reservaRespository.crearReserva(reserva);
+	}
+
+	@Override
+	public Reserva buscaReservaNumero(Integer nReserva) {
+		return this.reservaRespository.buscaReservaNumero(nReserva);
+	}
+
+	@Override
+	public ReservaTo buscaReservaNumeroTo(Integer nReserva) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	private ReservaTo transformaReservaTo(Reserva reserva) {
+		ReservaTo aux = new ReservaTo();
+		aux.setPlaca(reserva.getVehiculo().getPlaca());
+		aux.setModelo(reserva.getVehiculo().getModelo());
+		return null;
 	}
 
 }
