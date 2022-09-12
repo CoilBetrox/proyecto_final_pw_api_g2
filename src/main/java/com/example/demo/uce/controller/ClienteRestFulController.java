@@ -1,5 +1,7 @@
 package com.example.demo.uce.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.uce.repository.modelo.Cliente;
 import com.example.demo.uce.service.IClienteService;
+import com.example.demo.uce.service.to.ClienteTo;
 
 @RestController
 @RequestMapping("/clientes")
@@ -36,5 +39,10 @@ public class ClienteRestFulController {
 	@GetMapping(path = "/{cedula}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Cliente> buscarClienteCedula(@PathVariable("cedula") String cedula){
 		return ResponseEntity.ok(this.clienteService.buscarClienteCedula(cedula));
+	}
+	
+	@GetMapping(path = "/vip" ,produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<ClienteTo>> listarClientesVip(){
+		return ResponseEntity.ok(this.clienteService.listaClientesVIP());
 	}
 }
