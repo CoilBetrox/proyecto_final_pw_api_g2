@@ -28,7 +28,7 @@ public class ClienteRestFulController {
 		try {
 			this.clienteService.registrarCliente(cliente);
 		} catch (Exception e) {
-			msj = "Error al ingresar el vehículo" + e;
+			msj = "Error al ingresar el Cliente" + e;
 		}
 		return msj;
 	}
