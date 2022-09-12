@@ -1,6 +1,15 @@
 package com.example.demo.uce.service.to;
 
-public class ReservaTo {
+import java.io.Serializable;
+
+import org.springframework.hateoas.RepresentationModel;
+
+public class ReservaTo extends RepresentationModel<ReservaTo> implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8774359433941464313L;
 
 	private String placa;
 	

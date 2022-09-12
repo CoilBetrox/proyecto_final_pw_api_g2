@@ -25,15 +25,17 @@ public class ReserveServiceImpl implements IReservaService {
 
 	@Override
 	public ReservaTo buscaReservaNumeroTo(Integer nReserva) {
-		// TODO Auto-generated method stub
-		return null;
+		return transformaReservaTo(this.reservaRespository.buscaReservaNumero(nReserva));
 	}
 	
 	private ReservaTo transformaReservaTo(Reserva reserva) {
 		ReservaTo aux = new ReservaTo();
 		aux.setPlaca(reserva.getVehiculo().getPlaca());
 		aux.setModelo(reserva.getVehiculo().getModelo());
-		return null;
+		aux.setEstado(reserva.getVehiculo().getDisponible());
+		aux.setFecha(reserva.getFechaInicio().toString() + "-" + reserva.getFechaFin());
+		aux.setCiCliente(reserva.getCliente().getCedula());
+		return aux;
 	}
 
 }

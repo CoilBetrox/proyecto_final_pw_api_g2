@@ -43,14 +43,5 @@ public class VehiculoRespositoryImpl implements IVehiculoRepository {
 		this.entityManager.persist(vehiculo);
 	}
 
-	@Override
-	public void actualizaEstado(String placa, String estado) {
-		Vehiculo aux = buscaVehiculoPorPlaca(placa);
-		if(aux!=null){
-			aux.setDisponible(estado);
-			this.entityManager.merge(aux);
-		}
-	}
-
 
 }

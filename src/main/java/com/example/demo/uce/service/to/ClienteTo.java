@@ -1,8 +1,16 @@
 package com.example.demo.uce.service.to;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class ClienteTo {
+import org.springframework.hateoas.RepresentationModel;
+
+public class ClienteTo extends RepresentationModel<ClienteTo> implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2063590688887076360L;
 
 	private Integer id;
 

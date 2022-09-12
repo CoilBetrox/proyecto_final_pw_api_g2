@@ -14,5 +14,4 @@ public interface IVehiculoRepository {
 	
 	public void actualiza(Vehiculo vehiculo); 
 	
-	public void actualizaEstado(String placa, String estado);
 }

@@ -13,5 +13,5 @@ public interface IVehiculoService {
 	
 	public VehiculoTo buscaVehiculoPorPlaca(String placa);
 	
-	public void actualizaEstado(String placa, String estado);
+	public void actualiza(Vehiculo vehiculo); 
 }
