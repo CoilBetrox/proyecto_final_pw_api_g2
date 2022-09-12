@@ -33,7 +33,7 @@ public class VehiculoRestFullController {
 		return lista;
 	}
 
-	@PostMapping
+	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
 	public String crear(@RequestBody Vehiculo vehiculo) {
 		String msj = "Vehiculo ingresado correctamente";
 		try {
@@ -41,7 +41,6 @@ public class VehiculoRestFullController {
 		} catch (Exception e) {
 			msj = "Error al ingresar el vehículo" + e;
 		}
-
 		return msj;
 	}
 

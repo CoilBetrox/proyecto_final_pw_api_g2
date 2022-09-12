@@ -1,15 +1,8 @@
 package com.example.demo.uce.service.to;
 
 import java.io.Serializable;
-import java.time.LocalDate;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.OneToOne;
 
 import org.springframework.hateoas.RepresentationModel;
-
-import com.example.demo.uce.repository.modelo.Reserva;
 
 public class VehiculoTo extends RepresentationModel<VehiculoTo> implements Serializable{
 	
