@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.uce.repository.modelo.Reserva;
 import com.example.demo.uce.service.IReservaService;
-import com.example.demo.uce.service.IVehiculoService;
 import com.example.demo.uce.service.to.ReservaTo;
 
 @RestController
@@ -23,16 +22,14 @@ public class ReservaRestFullController {
 	@Autowired
 	private IReservaService reservaService;
 	
-	@Autowired
-	private IVehiculoService vehiculoService;
-	
-	@PutMapping(path = "/retirar")
+	@PutMapping(path = "/retiro")//?nReserva=xxxx
 	public String retiraVehiculoReservado(@RequestParam("nReserva") Integer nReserva) {
 		String msj = "vehiculo retirado correctamente";
 		try {
 			Reserva aux = this.reservaService.buscaReservaNumero(nReserva);
 			aux.getVehiculo().setDisponible("ND");
-			this.vehiculoService.actualiza(aux.getVehiculo());
+			aux.setEstado("E");
+			this.reservaService.actualiza(aux);
 		} catch (Exception e) {
 			msj = "Error al retirar el vehículo" + e;
 		}

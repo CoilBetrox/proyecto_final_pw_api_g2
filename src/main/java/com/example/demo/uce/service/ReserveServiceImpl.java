@@ -28,6 +28,10 @@ public class ReserveServiceImpl implements IReservaService {
 		return transformaReservaTo(this.reservaRespository.buscaReservaNumero(nReserva));
 	}
 	
+	@Override
+	public void actualiza(Reserva reserva) {
+		this.reservaRespository.actualiza(reserva);
+	}
 	private ReservaTo transformaReservaTo(Reserva reserva) {
 		ReservaTo aux = new ReservaTo();
 		aux.setPlaca(reserva.getVehiculo().getPlaca());
@@ -37,5 +41,6 @@ public class ReserveServiceImpl implements IReservaService {
 		aux.setCiCliente(reserva.getCliente().getCedula());
 		return aux;
 	}
+
 
 }

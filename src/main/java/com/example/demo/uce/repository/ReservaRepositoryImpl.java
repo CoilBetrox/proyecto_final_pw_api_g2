@@ -28,5 +28,11 @@ public class ReservaRepositoryImpl implements IReservaRespository {
 		return myQuery.getSingleResult();
 	}
 
+	@Override
+	public void actualiza(Reserva reserva) {
+		this.entityManager.merge(reserva);
+	}
+
+	
 
 }
