@@ -15,7 +15,7 @@ import com.example.demo.uce.repository.modelo.Cliente;
 import com.example.demo.uce.service.IClienteService;
 
 @RestController
-@RequestMapping("/vehiculos")
+@RequestMapping("/clientes")
 @CrossOrigin("http://localhost:8080/")
 public class ClienteRestFulController {
 	
