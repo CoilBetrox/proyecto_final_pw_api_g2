@@ -13,5 +13,7 @@ public interface IVehiculoService {
 	
 	public VehiculoTo buscaVehiculoPorPlaca(String placa);
 	
-	public void actualiza(Vehiculo vehiculo); 
+	public void actualiza(Vehiculo vehiculo);
+	
+	public String reservaVehiculo(String placa, String cedula, String fechaInicio, String fechaFin);
 }

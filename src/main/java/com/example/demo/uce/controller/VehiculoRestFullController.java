@@ -14,8 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.uce.repository.modelo.Reserva;
 import com.example.demo.uce.repository.modelo.Vehiculo;
 import com.example.demo.uce.service.IVehiculoService;
+import com.example.demo.uce.service.to.ReservaAux;
+import com.example.demo.uce.service.to.ReservaTo;
 import com.example.demo.uce.service.to.VehiculoTo;
 
 @RestController
@@ -48,5 +51,10 @@ public class VehiculoRestFullController {
 	public ResponseEntity<VehiculoTo> buscaVehiculoPorPlaca(@PathVariable("placa") String placa) {
 		return ResponseEntity.ok(vehiculoService.buscaVehiculoPorPlaca(placa));
 	}
-
+	
+	@PostMapping(path = "/reservacion", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<String> reservaVehiculo(@RequestBody ReservaAux reserva) {
+		return ResponseEntity.ok(vehiculoService.reservaVehiculo(reserva.getPlaca(), reserva.getCiCliente(), reserva.getFechaFin(), reserva.getFechaFin()));
+	}
+	
 }

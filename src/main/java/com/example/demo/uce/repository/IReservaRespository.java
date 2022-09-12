@@ -9,4 +9,5 @@ public interface IReservaRespository {
 	public Reserva buscaReservaNumero(Integer nReserva);
 	
 	public void actualiza(Reserva reserva);
+	
 }

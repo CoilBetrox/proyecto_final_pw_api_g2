@@ -36,6 +36,7 @@ public class ReservaRestFullController {
 		return msj;
 	}
 	
+	
 	@GetMapping(path = "/{nReserva}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ReservaTo buscaReservaNumeroTo(@PathVariable("nReserva") Integer nReserva) {
 		return this.reservaService.buscaReservaNumeroTo(nReserva);

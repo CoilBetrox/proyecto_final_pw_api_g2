@@ -12,4 +12,5 @@ public interface IReservaService {
 	public void actualiza(Reserva reserva);
 	
 	public ReservaTo buscaReservaNumeroTo(Integer nReserva);
+
 }

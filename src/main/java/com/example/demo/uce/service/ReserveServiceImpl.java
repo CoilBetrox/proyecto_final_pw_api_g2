@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.uce.repository.IReservaRespository;
 import com.example.demo.uce.repository.modelo.Reserva;
+import com.example.demo.uce.service.to.ReservaAux;
 import com.example.demo.uce.service.to.ReservaTo;
 
 @Service
@@ -41,6 +42,5 @@ public class ReserveServiceImpl implements IReservaService {
 		aux.setCiCliente(reserva.getCliente().getCedula());
 		return aux;
 	}
-
 
 }
