@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.uce.service.IReservaService;
 
 @RestController
-@RequestMapping("APINomina/V1/reservas")
+@RequestMapping("/reservas")
 @CrossOrigin("http://localhost:8080/")
 public class ReservaRestFullController {
 	

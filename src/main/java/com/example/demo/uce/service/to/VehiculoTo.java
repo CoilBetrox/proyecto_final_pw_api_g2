@@ -13,6 +13,11 @@ import com.example.demo.uce.repository.modelo.Reserva;
 
 public class VehiculoTo extends RepresentationModel<VehiculoTo> implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7583564584700271916L;
+
 	private Integer id;
 	
 	private String placa;

@@ -19,36 +19,35 @@ import com.example.demo.uce.service.IVehiculoService;
 import com.example.demo.uce.service.to.VehiculoTo;
 
 @RestController
-@RequestMapping("APINomina/V1/vehiculos")
+@RequestMapping("/vehiculos")
 @CrossOrigin("http://localhost:8080/")
 public class VehiculoRestFullController {
-	
+
 	@Autowired
 	private IVehiculoService vehiculoService;
-	
+
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<VehiculoTo> buscaVehiculosDisponibles(@RequestParam("marca") String marca, @RequestParam("modelo") String modelo) {
+	public List<VehiculoTo> buscaVehiculosDisponibles(@RequestParam("marca") String marca,
+			@RequestParam("modelo") String modelo) {
 		List<VehiculoTo> lista = this.vehiculoService.buscaVehiculosDisponibles(marca, modelo);
 		return lista;
 	}
-	
+
 	@PostMapping
-	@CrossOrigin("http://localhost:8080/")
 	public String crear(@RequestBody Vehiculo vehiculo) {
 		String msj = "Vehiculo ingresado correctamente";
 		try {
 			this.vehiculoService.crear(vehiculo);
 		} catch (Exception e) {
-			msj = "Error al ingresar el vehículo"+e;
+			msj = "Error al ingresar el vehículo" + e;
 		}
-		
+
 		return msj;
 	}
-	
-	@GetMapping(path = "/{placa}" ,produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<VehiculoTo> buscaVehiculoPorPlaca(@PathVariable ("placa") String placa) {
+
+	@GetMapping(path = "/{placa}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<VehiculoTo> buscaVehiculoPorPlaca(@PathVariable("placa") String placa) {
 		return ResponseEntity.ok(vehiculoService.buscaVehiculoPorPlaca(placa));
 	}
-	
-	
+
 }
