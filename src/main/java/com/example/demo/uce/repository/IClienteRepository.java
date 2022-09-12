@@ -1,5 +1,7 @@
 package com.example.demo.uce.repository;
 
+import java.util.List;
+
 import com.example.demo.uce.repository.modelo.Cliente;
 
 public interface IClienteRepository {
@@ -8,4 +10,5 @@ public interface IClienteRepository {
 	
 	public Cliente buscarClienteCedula(String idCliente);
 	
+	public List<Cliente> listarClientes();
 }

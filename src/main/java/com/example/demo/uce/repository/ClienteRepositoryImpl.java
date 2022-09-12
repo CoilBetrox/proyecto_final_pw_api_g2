@@ -1,5 +1,7 @@
 package com.example.demo.uce.repository;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
@@ -27,6 +29,12 @@ public class ClienteRepositoryImpl implements IClienteRepository {
 		myQuery.setParameter("idCliente", idCliente);
 		return myQuery.getSingleResult();
 	}
+
+	@Override
+	public List<Cliente> listarClientes() {
+		TypedQuery<Cliente> myQuery = this.em.createQuery("SELECT c FROM Cliente c",Cliente.class);
+		return myQuery.getResultList();
+	}
 	
-	//enviar cedula nombre apellido valor iva valor total
+	//cliente vip enviar cedula nombre apellido valor iva valor total
 }

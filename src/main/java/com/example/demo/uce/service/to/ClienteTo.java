@@ -12,29 +12,15 @@ public class ClienteTo extends RepresentationModel<ClienteTo> implements Seriali
 	 */
 	private static final long serialVersionUID = 2063590688887076360L;
 
-	private Integer id;
-
 	private String cedula;
 
 	private String nombre;
 
 	private String apellido;
 
-	private LocalDate fechaNacimiento;
+	private Double valorIva;
 
-	private String genero;
-
-	private String tipoRegistro;
-
-	private String tarjetaCredito;
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
+	private Double valorTotal;
 
 	public String getCedula() {
 		return cedula;
@@ -60,38 +46,20 @@ public class ClienteTo extends RepresentationModel<ClienteTo> implements Seriali
 		this.apellido = apellido;
 	}
 
-	public LocalDate getFechaNacimiento() {
-		return fechaNacimiento;
+	public Double getValorIva() {
+		return valorIva;
 	}
 
-	public void setFechaNacimiento(LocalDate fechaNacimiento) {
-		this.fechaNacimiento = fechaNacimiento;
+	public void setValorIva(Double valorIva) {
+		this.valorIva = valorIva;
 	}
 
-	public String getGenero() {
-		return genero;
+	public Double getValorTotal() {
+		return valorTotal;
 	}
 
-	public void setGenero(String genero) {
-		this.genero = genero;
+	public void setValorTotal(Double valorTotal) {
+		this.valorTotal = valorTotal;
 	}
-
-	public String getTipoRegistro() {
-		return tipoRegistro;
-	}
-
-	public void setTipoRegistro(String tipoRegistro) {
-		this.tipoRegistro = tipoRegistro;
-	}
-
-	public String getTarjetaCredito() {
-		return tarjetaCredito;
-	}
-
-	public void setTarjetaCredito(String tarjetaCredito) {
-		this.tarjetaCredito = tarjetaCredito;
-	}
-
-	
 	
 }
