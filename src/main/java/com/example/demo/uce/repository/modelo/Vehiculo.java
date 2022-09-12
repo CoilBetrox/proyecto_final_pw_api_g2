@@ -1,7 +1,6 @@
 package com.example.demo.uce.repository.modelo;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -36,7 +35,7 @@ public class Vehiculo implements Serializable{
 	private String marca;
 	
 	@Column(name = "vehi_anio_fabricacion")
-	private LocalDate anioFablicacion;
+	private String anioFablicacion;
 	
 	@Column(name = "vehi_pais_fabricacion")
 	private String paisFabricacion;
@@ -56,11 +55,11 @@ public class Vehiculo implements Serializable{
 	@OneToOne(mappedBy = "vehiculo", cascade = CascadeType.ALL)
 	private Reserva reserva;
 	
-	public LocalDate getAnioFablicacion() {
+	public String getAnioFablicacion() {
 		return anioFablicacion;
 	}
 
-	public void setAnioFablicacion(LocalDate anioFablicacion) {
+	public void setAnioFablicacion(String anioFablicacion) {
 		this.anioFablicacion = anioFablicacion;
 	}
 
