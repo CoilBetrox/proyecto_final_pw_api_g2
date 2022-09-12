@@ -19,8 +19,8 @@ public class ClienteServiceImpl implements IClienteService {
 	}
 
 	@Override
-	public Cliente buscarCliente(Integer idCliente) {
-		return this.clienteRepository.buscarCliente(idCliente);
+	public Cliente buscarClienteCedula(String idCliente) {
+		return this.clienteRepository.buscarClienteCedula(idCliente);
 	}
 
 	private ClienteTo convertir(Cliente cliente) {

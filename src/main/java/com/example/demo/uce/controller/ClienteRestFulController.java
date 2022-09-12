@@ -34,7 +34,7 @@ public class ClienteRestFulController {
 	}
 	
 	@GetMapping(path = "/{cedula}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Cliente> buscarClienteCedula(@PathVariable("cedula") Integer cedula){
-		return ResponseEntity.ok(this.clienteService.buscarCliente(cedula));
+	public ResponseEntity<Cliente> buscarClienteCedula(@PathVariable("cedula") String cedula){
+		return ResponseEntity.ok(this.clienteService.buscarClienteCedula(cedula));
 	}
 }

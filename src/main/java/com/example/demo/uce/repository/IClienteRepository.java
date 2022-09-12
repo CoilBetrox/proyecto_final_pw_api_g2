@@ -6,6 +6,6 @@ public interface IClienteRepository {
 
 	public void registrarCliente(Cliente cliente);
 	
-	public Cliente buscarCliente(Integer idCliente);
+	public Cliente buscarClienteCedula(String idCliente);
 	
 }
