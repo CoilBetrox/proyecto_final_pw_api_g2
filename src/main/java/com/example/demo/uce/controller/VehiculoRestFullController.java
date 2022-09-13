@@ -30,7 +30,7 @@ public class VehiculoRestFullController {
 	private IVehiculoService vehiculoService;
 	
 	@PutMapping(path = "/retiro")//?nReserva=xxxx
-	@CrossOrigin(origins="http://localhost:8080/")
+	
 	public String retiraVehiculoReservado(@RequestParam("nReserva") Integer nReserva) {
 		String msj = "vehiculo retirado correctamente";
 		try {
