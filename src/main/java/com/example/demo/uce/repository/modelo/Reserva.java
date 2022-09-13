@@ -47,7 +47,7 @@ public class Reserva implements Serializable{
 	@JoinColumn(name = "clie_id")
 	private Cliente cliente;
 	
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "vehi_id")
 	private Vehiculo vehiculo;
 	

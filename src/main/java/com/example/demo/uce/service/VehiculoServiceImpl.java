@@ -109,9 +109,10 @@ public class VehiculoServiceImpl implements IVehiculoService {
 			cobroRealizado.setReserva(reserva);
 			
 			reserva.setCobroRealizado(cobroRealizado);
-			
+			vehiculo.añadirReserva(reserva);
 			this.clienteService.actualizarCliente(cliente);
 			this.reservaService.crearReserva(reserva);
+			
 			this.vehiculoRepository.actualiza(vehiculo);
 			mensaje = "Vehiculo reservado correctamente, numero de reserva: " +num.toString();
 			return mensaje;
@@ -158,15 +159,18 @@ public class VehiculoServiceImpl implements IVehiculoService {
 	}
 	
 	
-	public String compruebaDisponible(LocalDate fechaInicio, LocalDate fechaFin, Reserva reservacion) {
-		if (reservacion == null) {
+	public String compruebaDisponible(LocalDate fechaInicio, LocalDate fechaFin, List<Reserva> reservacion) {
+		if (reservacion.isEmpty()) {
 			return "D";
 		} else {
-			if (!fechaInicio.isBefore(reservacion.getFechaFin()) && !fechaFin.isAfter(reservacion.getFechaFin())) {
-				return "ND";
-			}
-			if (!fechaFin.isBefore(reservacion.getFechaInicio()) && !fechaFin.isAfter(reservacion.getFechaFin())) {
-				return "ND";
+			for (Reserva reserva : reservacion) {
+				if (!fechaInicio.isBefore(reserva.getFechaFin()) && !fechaFin.isAfter(reserva.getFechaFin())) {
+					return "ND";
+				}
+				if (!fechaFin.isBefore(reserva.getFechaInicio()) && !fechaFin.isAfter(reserva.getFechaFin())) {
+					return "ND";
+				}
+				
 			}
 			return "D";
 		}

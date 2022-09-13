@@ -70,6 +70,7 @@ public class ClienteServiceImpl implements IClienteService {
 	private Double valorIva(List<Reserva> reservasCliente) {
 		Double valorI = 0.0;
 		for(Reserva reserva : reservasCliente) {
+			System.out.println(reserva);
 			valorI += reserva.getCobroRealizado().getValorIva();
 		}
 		return valorI;

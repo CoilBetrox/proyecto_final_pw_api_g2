@@ -1,6 +1,7 @@
 package com.example.demo.uce.repository.modelo;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -8,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -52,8 +54,8 @@ public class Vehiculo implements Serializable{
 	@Column(name = "vehi_disponible")
 	private String disponible;
 	
-	@OneToOne(mappedBy = "vehiculo", cascade = CascadeType.ALL)
-	private Reserva reserva;
+	@OneToMany(mappedBy = "vehiculo", cascade = CascadeType.ALL)
+	private List<Reserva> reserva;
 	
 	public String getAnioFablicacion() {
 		return anioFablicacion;
@@ -63,11 +65,15 @@ public class Vehiculo implements Serializable{
 		this.anioFablicacion = anioFablicacion;
 	}
 
-	public Reserva getReserva() {
+	public void añadirReserva(Reserva r) {
+		this.reserva.add(r);
+	}
+
+	public List<Reserva> getReserva() {
 		return reserva;
 	}
 
-	public void setReserva(Reserva reserva) {
+	public void setReserva(List<Reserva> reserva) {
 		this.reserva = reserva;
 	}
 
