@@ -1,6 +1,7 @@
 package com.example.demo.uce.service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.example.demo.uce.repository.ClienteRepositoryImpl;
 import com.example.demo.uce.repository.modelo.Cliente;
 import com.example.demo.uce.repository.modelo.Reserva;
+import com.example.demo.uce.service.to.ClienteAuxTo;
 import com.example.demo.uce.service.to.ClienteTo;
 
 @Service
@@ -24,6 +26,11 @@ public class ClienteServiceImpl implements IClienteService {
 	}
 
 	@Override
+	public ClienteAuxTo buscarClienteToCedula(String idCliente) {
+		return convertirCliAuxTo(this.clienteRepository.buscarClienteCedula(idCliente));
+	}
+	
+	@Override
 	public Cliente buscarClienteCedula(String idCliente) {
 		return this.clienteRepository.buscarClienteCedula(idCliente);
 	}
@@ -35,8 +42,20 @@ public class ClienteServiceImpl implements IClienteService {
 		for(Cliente c : lstClientes) {
 			lstClientesTo.add(convertirClienteTo(c));
 		}
-		lstClientesTo.sort(Comparator.comparing(ClienteTo::getValorTotal));
+		lstClientesTo.sort(Comparator.comparing(ClienteTo::getValorTotal).reversed());
 		return lstClientesTo;
+	}
+	
+	private ClienteAuxTo convertirCliAuxTo(Cliente cliente) {
+		ClienteAuxTo clAuxTo = new ClienteAuxTo();
+		clAuxTo.setId(cliente.getId());
+		clAuxTo.setCedula(cliente.getCedula());
+		clAuxTo.setNombre(cliente.getNombre());
+		clAuxTo.setApellido(cliente.getApellido());
+		clAuxTo.setFechaNacimiento(cliente.getFechaNacimiento());
+		clAuxTo.setGenero(cliente.getGenero());
+		clAuxTo.setTipoRegistro(cliente.getTipoRegistro());
+		return clAuxTo;
 	}
 	
 	private ClienteTo convertirClienteTo(Cliente cliente) {
