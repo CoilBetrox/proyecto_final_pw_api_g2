@@ -26,16 +26,6 @@ public class ReserveServiceImpl implements IReservaService {
 	public void crearReserva(Reserva reserva) {
 		this.reservaRespository.crearReserva(reserva);
 	}
-
-	@Override
-	public void retiraVehiculoReservado(Integer nReserva) {
-		Reserva aux = this.reservaRespository.buscaReservaNumero(nReserva);
-		if(aux!=null) {
-			aux.getVehiculo().setDisponible("ND");
-			aux.setEstado("E");
-			this.actualiza(aux);
-		}
-	}
 	
 	@Override
 	public Reserva buscaReservaNumero(Integer nReserva) {

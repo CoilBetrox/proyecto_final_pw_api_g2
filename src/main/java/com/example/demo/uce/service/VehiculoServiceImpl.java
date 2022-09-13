@@ -33,6 +33,18 @@ public class VehiculoServiceImpl implements IVehiculoService {
 	public void crear(Vehiculo vehiculo) {
 		this.vehiculoRepository.crear(vehiculo);
 	}
+	
+	@Override
+	public void retiraVehiculoReservado(Integer nReserva) {
+		Reserva aux = this.reservaService.buscaReservaNumero(nReserva);
+		if(aux!=null) {
+			Vehiculo v = this.buscaVehiculoPlaca(aux.getVehiculo().getPlaca());
+			v.setDisponible("ND");
+			this.vehiculoRepository.actualiza(v);
+			aux.setEstado("E");
+			this.reservaService.actualiza(aux);
+		}
+	}
 
 	@Override
 	public List<VehiculoTo> buscaVehiculosDisponibles(String marca, String modelo) {

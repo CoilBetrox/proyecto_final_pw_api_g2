@@ -1,6 +1,5 @@
 package com.example.demo.uce.service;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import com.example.demo.uce.repository.modelo.Reserva;
@@ -10,8 +9,6 @@ import com.example.demo.uce.service.to.ReservaTo;
 public interface IReservaService {
 
 	public void crearReserva(Reserva reserva);
-	
-	public void retiraVehiculoReservado(Integer nReserva);
 	
 	public Reserva buscaReservaNumero(Integer nReserva);
 	

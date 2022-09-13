@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,6 +27,17 @@ public class VehiculoRestFullController {
 
 	@Autowired
 	private IVehiculoService vehiculoService;
+	
+	@PutMapping(path = "/retiro")//?nReserva=xxxx
+	public String retiraVehiculoReservado(@RequestParam("nReserva") Integer nReserva) {
+		String msj = "vehiculo retirado correctamente";
+		try {
+			this.vehiculoService.retiraVehiculoReservado(nReserva);
+		} catch (Exception e) {
+			msj = "Error al retirar el vehículo" + e;
+		}
+		return msj;
+	}
 
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<VehiculoTo> buscaVehiculosDisponibles(@RequestParam("marca") String marca,

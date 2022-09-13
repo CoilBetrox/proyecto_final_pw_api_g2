@@ -26,18 +26,6 @@ public class ReservaRestFullController {
 	@Autowired
 	private IReservaService reservaService;
 	
-	@PutMapping(path = "/retiro")//?nReserva=xxxx
-	public String retiraVehiculoReservado(@RequestParam("nReserva") Integer nReserva) {
-		String msj = "vehiculo retirado correctamente";
-		try {
-			this.reservaService.retiraVehiculoReservado(nReserva);
-		} catch (Exception e) {
-			msj = "Error al retirar el vehículo" + e;
-		}
-		return msj;
-	}
-	
-	
 	@GetMapping(path = "/numeroR/{nReserva}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ReservaTo buscaReservaNumeroTo(@PathVariable("nReserva") Integer nReserva) {
 		return this.reservaService.buscaReservaNumeroTo(nReserva);

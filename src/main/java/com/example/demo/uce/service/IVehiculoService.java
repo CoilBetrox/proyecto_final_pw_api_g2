@@ -20,4 +20,6 @@ public interface IVehiculoService {
 	public String reservaVehiculo(String placa, String cedula, String fechaInicio, String fechaFin, String numeroTarjeta);
 	
 	public String compruebaVehiculoPorPlacaFecha(String placa, String fInicio, String fFin);
+
+	public void retiraVehiculoReservado(Integer nReserva);
 }
