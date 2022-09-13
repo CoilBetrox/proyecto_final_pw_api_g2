@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import com.example.demo.uce.repository.IClienteRepository;
 import com.example.demo.uce.repository.IVehiculoRepository;
 import com.example.demo.uce.repository.modelo.Cliente;
+import com.example.demo.uce.repository.modelo.CobroRealizado;
 import com.example.demo.uce.repository.modelo.Reserva;
 import com.example.demo.uce.repository.modelo.Vehiculo;
 import com.example.demo.uce.service.to.ReservaAux;
@@ -58,13 +59,15 @@ public class VehiculoServiceImpl implements IVehiculoService {
 	
 	
 	@Override
-	public String reservaVehiculo(String placa, String cedula, String fechaInicio, String fechaFin) {
+	public String reservaVehiculo(String placa, String cedula, String fechaInicio, String fechaFin, String numeroTarjeta) {
 		
-		LocalDate fInicio = LocalDate.parse(fechaFin);
+		LocalDate fInicio = LocalDate.parse(fechaInicio);
 		LocalDate fFin = LocalDate.parse(fechaFin);
 		String disponible = compruebaVehiculo(placa, fInicio, fFin);
+		String mensaje = "";
 		if (disponible == "ND") {
-			return "El vehiculo ya está reservado";
+			mensaje = "El vehículo de placa: " + placa + " no está disponible";
+			return mensaje;
 		}else {
 			Vehiculo vehiculo = this.vehiculoRepository.buscaVehiculoPorPlaca(placa);
 			Reserva reserva = new Reserva();
@@ -83,10 +86,19 @@ public class VehiculoServiceImpl implements IVehiculoService {
 			Cliente cliente = this.clienteService.buscarClienteCedula(cedula);
 			reserva.setCliente(cliente);
 			reserva.setVehiculo(vehiculo);
+			CobroRealizado cobroRealizado = new CobroRealizado();
+			cobroRealizado.setFechaCobro(fechaInicio);
+			cobroRealizado.setTarjeta(numeroTarjeta);
+			cobroRealizado.setValorSubtotal(subtotal);
+			cobroRealizado.setValorIva(valIva);
+			cobroRealizado.setValorPagar(valTotal);
+			
+			reserva.setCobroRealizado(cobroRealizado);
 			
 			this.reservaService.crearReserva(reserva);
 			this.vehiculoRepository.actualiza(vehiculo);
-			return num.toString();
+			mensaje = "Vehiculo reservado correctamente, numero de reserva: " +num.toString();
+			return mensaje;
 		}
 		
 	}
@@ -107,7 +119,26 @@ public class VehiculoServiceImpl implements IVehiculoService {
 		}else {
 			return null;
 		}
-		
+	}
+	
+	public String compruebaVehiculoPorPlacaFecha(String placa, String fInicio, String fFin) {
+		LocalDate fechaInicio = LocalDate.parse(fInicio);
+		LocalDate fechaFin = LocalDate.parse(fFin);
+		Vehiculo vehiculo = vehiculoRepository.buscaVehiculoPorPlaca(placa);
+		String msj = "";
+		if (vehiculo != null) {
+			String d = compruebaDisponible(fechaInicio, fechaFin, vehiculo.getReserva());
+			
+			if (d == "D") {
+				Double subtotal = (double)(diasReservado(fechaInicio, fechaFin) * vehiculo.getValorDia());
+				Double valIva = (double)(subtotal*IVA);
+				Double valTotal = (double)(subtotal + valIva);
+				msj = "El vehiculo de placa: "+ placa +" está disponible, el valor a pagar es: " + valTotal.toString();
+			}else {
+				msj = "El vehiculo de placa: "+ placa +" no está disponible, sus proximas fechas son: " + fechaFin.plusDays(1).toString();
+			}
+		}
+		return msj;
 	}
 	
 	

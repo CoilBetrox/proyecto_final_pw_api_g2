@@ -13,6 +13,8 @@ public class ReservaAux {
 	private String fechaFin;
 	
 	private String ciCliente;
+	
+	private String numeroTarjeta;
 
 	public String getPlaca() {
 		return placa;
@@ -61,6 +63,13 @@ public class ReservaAux {
 	public void setCiCliente(String ciCliente) {
 		this.ciCliente = ciCliente;
 	}
-	
+
+	public String getNumeroTarjeta() {
+		return numeroTarjeta;
+	}
+
+	public void setNumeroTarjeta(String numeroTarjeta) {
+		this.numeroTarjeta = numeroTarjeta;
+	}
 
 }

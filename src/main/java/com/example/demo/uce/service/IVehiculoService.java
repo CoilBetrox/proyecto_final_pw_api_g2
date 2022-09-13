@@ -15,5 +15,7 @@ public interface IVehiculoService {
 	
 	public void actualiza(Vehiculo vehiculo);
 	
-	public String reservaVehiculo(String placa, String cedula, String fechaInicio, String fechaFin);
+	public String reservaVehiculo(String placa, String cedula, String fechaInicio, String fechaFin, String numeroTarjeta);
+	
+	public String compruebaVehiculoPorPlacaFecha(String placa, String fInicio, String fFin);
 }

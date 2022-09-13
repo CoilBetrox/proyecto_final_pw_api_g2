@@ -17,5 +17,5 @@ public interface IReservaService {
 	public ReservaTo buscaReservaNumeroTo(Integer nReserva);
 	
 	//public List<Reserva> reporteReserva(LocalDate fechaInicio, LocalDate fechaFin);
-
+	
 }
