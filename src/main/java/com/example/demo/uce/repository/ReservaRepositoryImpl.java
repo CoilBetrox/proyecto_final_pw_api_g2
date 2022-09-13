@@ -28,7 +28,10 @@ public class ReservaRepositoryImpl implements IReservaRespository {
 	public Reserva buscaReservaNumero(Integer nReserva) {
 		TypedQuery<Reserva> myQuery = this.entityManager.createQuery("SELECT r FROM Reserva r WHERE r.numeroReserva = :nReserva",Reserva.class);
 		myQuery.setParameter("nReserva", nReserva);
-		return myQuery.getSingleResult();
+		if(myQuery.getResultList().isEmpty()) {
+			return null;
+		}
+		return myQuery.getResultList().get(0);
 	}
 
 	@Override

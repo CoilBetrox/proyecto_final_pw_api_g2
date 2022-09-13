@@ -55,7 +55,7 @@ public class VehiculoServiceImpl implements IVehiculoService {
 	
 	@Override
 	public VehiculoTo buscaVehiculoPorPlaca(String placa) {
-		Vehiculo vehiculo = vehiculoRepository.buscaVehiculoPorPlaca(placa);
+		Vehiculo vehiculo = this.vehiculoRepository.buscaVehiculoPorPlaca(placa);
 		if(vehiculo==null) {
 			return null;
 		}

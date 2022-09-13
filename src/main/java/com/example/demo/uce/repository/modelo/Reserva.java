@@ -38,10 +38,10 @@ public class Reserva implements Serializable{
 	private LocalDate fechaFin;
 	
 	@Column(name = "rese_estado")
-	private String estado;
+	private String estado;//Generado-Ejecutado
 	
 	@Column(name = "rese_valor_pagar")
-	private Double valorPagar;
+	private Double valorPagar;//iva+subtotal
 	
 	@ManyToOne
 	@JoinColumn(name = "clie_id")

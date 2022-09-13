@@ -29,11 +29,17 @@ public class ReserveServiceImpl implements IReservaService {
 	
 	@Override
 	public Reserva buscaReservaNumero(Integer nReserva) {
+		if(this.reservaRespository.buscaReservaNumero(nReserva)==null) {
+			return null;
+		}
 		return this.reservaRespository.buscaReservaNumero(nReserva);
 	}
 
 	@Override
 	public ReservaTo buscaReservaNumeroTo(Integer nReserva) {
+		if(this.reservaRespository.buscaReservaNumero(nReserva)==null) {
+			return null;
+		}
 		return transformaReservaTo(this.reservaRespository.buscaReservaNumero(nReserva));
 	}
 	
@@ -46,7 +52,7 @@ public class ReserveServiceImpl implements IReservaService {
 	
 	@Override
 	public List<ReservaReporteTo> reporteReserva(String fechaInicio, String fechaFin) {
-		List<Reserva> reservas = reservaRespository.reporteReserva(LocalDate.parse(fechaInicio), LocalDate.parse(fechaFin));
+		List<Reserva> reservas = this.reservaRespository.reporteReserva(LocalDate.parse(fechaInicio), LocalDate.parse(fechaFin));
 		return reservas.stream().map(reserva -> convierteAgrega(reserva)).collect(Collectors.toList());
 	}
 
