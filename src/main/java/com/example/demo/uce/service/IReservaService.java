@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import com.example.demo.uce.repository.modelo.Reserva;
+import com.example.demo.uce.service.to.ReservaReporteTo;
 import com.example.demo.uce.service.to.ReservaTo;
 
 public interface IReservaService {
@@ -16,6 +17,6 @@ public interface IReservaService {
 	
 	public ReservaTo buscaReservaNumeroTo(Integer nReserva);
 	
-	//public List<Reserva> reporteReserva(LocalDate fechaInicio, LocalDate fechaFin);
+	public List<ReservaReporteTo> reporteReserva(String fechaInicio, String fechaFin);
 	
 }
