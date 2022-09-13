@@ -2,8 +2,6 @@ package com.example.demo.uce.controller;
 
 import java.util.List;
 
-import javax.websocket.server.PathParam;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -43,7 +41,7 @@ public class ReservaRestFullController {
 	}
 	
 	
-	@GetMapping(path = "/{nReserva}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(path = "/numeroR/{nReserva}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ReservaTo buscaReservaNumeroTo(@PathVariable("nReserva") Integer nReserva) {
 		return this.reservaService.buscaReservaNumeroTo(nReserva);
 	}
