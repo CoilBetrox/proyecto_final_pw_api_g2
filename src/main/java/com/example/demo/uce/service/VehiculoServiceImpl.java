@@ -89,6 +89,7 @@ public class VehiculoServiceImpl implements IVehiculoService {
 			cobroRealizado.setValorSubtotal(subtotal);
 			cobroRealizado.setValorIva(valIva);
 			cobroRealizado.setValorPagar(valTotal);
+			cobroRealizado.setReserva(reserva);
 			
 			reserva.setCobroRealizado(cobroRealizado);
 			
