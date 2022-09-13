@@ -35,6 +35,10 @@ public class ClienteRepositoryImpl implements IClienteRepository {
 		TypedQuery<Cliente> myQuery = this.em.createQuery("SELECT c FROM Cliente c",Cliente.class);
 		return myQuery.getResultList();
 	}
+
+	@Override
+	public void actualizar(Cliente cliente) {
+		this.em.merge(cliente);
+	}
 	
-	//cliente vip enviar cedula nombre apellido valor iva valor total
 }

@@ -1,7 +1,6 @@
 package com.example.demo.uce.service;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -82,6 +81,11 @@ public class ClienteServiceImpl implements IClienteService {
 			valorT += reserva.getValorPagar();
 		}
 		return valorT;
+	}
+
+	@Override
+	public void actualizarCliente(Cliente cliente) {
+		this.clienteRepository.actualizar(cliente);
 	}
 	
 }

@@ -16,4 +16,6 @@ public interface IClienteService {
 	
 	public List<ClienteTo> listaClientesVIP();
 	
+	public void actualizarCliente(Cliente cliente);
+	
 }

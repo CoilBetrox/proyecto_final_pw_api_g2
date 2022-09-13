@@ -11,4 +11,6 @@ public interface IClienteRepository {
 	public Cliente buscarClienteCedula(String idCliente);
 	
 	public List<Cliente> listarClientes();
+	
+	public void actualizar(Cliente cliente);
 }

@@ -80,6 +80,7 @@ public class VehiculoServiceImpl implements IVehiculoService {
 			reserva.setEstado("G");
 			
 			Cliente cliente = this.clienteService.buscarClienteCedula(cedula);
+			cliente.setTarjetaCredito(numeroTarjeta);
 			reserva.setCliente(cliente);
 			reserva.setVehiculo(vehiculo);
 			CobroRealizado cobroRealizado = new CobroRealizado();
@@ -91,6 +92,7 @@ public class VehiculoServiceImpl implements IVehiculoService {
 			
 			reserva.setCobroRealizado(cobroRealizado);
 			
+			this.clienteService.actualizarCliente(cliente);
 			this.reservaService.crearReserva(reserva);
 			this.vehiculoRepository.actualiza(vehiculo);
 			mensaje = "Vehiculo reservado correctamente, numero de reserva: " +num.toString();
