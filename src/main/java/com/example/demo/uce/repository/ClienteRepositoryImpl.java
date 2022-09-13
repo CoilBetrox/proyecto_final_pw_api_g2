@@ -27,7 +27,10 @@ public class ClienteRepositoryImpl implements IClienteRepository {
 	public Cliente buscarClienteCedula(String idCliente) {
 		TypedQuery<Cliente> myQuery = this.em.createQuery("SELECT c FROM Cliente c WHERE c.cedula = :idCliente",Cliente.class);
 		myQuery.setParameter("idCliente", idCliente);
-		return myQuery.getSingleResult();
+		if(myQuery.getResultList().isEmpty()) {
+			return null;
+		}
+		return myQuery.getResultList().get(0);
 	}
 
 	@Override

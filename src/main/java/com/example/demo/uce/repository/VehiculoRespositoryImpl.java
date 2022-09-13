@@ -35,7 +35,10 @@ public class VehiculoRespositoryImpl implements IVehiculoRepository {
 		TypedQuery<Vehiculo> myQuery = this.entityManager
 				.createQuery("SELECT v FROM Vehiculo v WHERE v.placa =:placa", Vehiculo.class);
 		myQuery.setParameter("placa", placa);
-		return myQuery.getSingleResult();
+		if(myQuery.getResultList().isEmpty()) {
+			return null;
+		}
+		return myQuery.getResultList().get(0);
 	}
 
 	@Override

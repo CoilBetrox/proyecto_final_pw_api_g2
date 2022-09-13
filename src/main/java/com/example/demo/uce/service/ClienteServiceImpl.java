@@ -26,11 +26,17 @@ public class ClienteServiceImpl implements IClienteService {
 
 	@Override
 	public ClienteAuxTo buscarClienteToCedula(String idCliente) {
+		if(this.clienteRepository.buscarClienteCedula(idCliente)==null) {
+			return null;
+		}
 		return convertirCliAuxTo(this.clienteRepository.buscarClienteCedula(idCliente));
 	}
 	
 	@Override
 	public Cliente buscarClienteCedula(String idCliente) {
+		if(this.clienteRepository.buscarClienteCedula(idCliente)==null) {
+			return null;
+		}
 		return this.clienteRepository.buscarClienteCedula(idCliente);
 	}
 	

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,13 +23,14 @@ import com.example.demo.uce.service.to.VehiculoTo;
 
 @RestController
 @RequestMapping("/vehiculos")
-@CrossOrigin("http://localhost:8080/")
+@CrossOrigin(origins="http://localhost:8080/",methods = {RequestMethod.POST, RequestMethod.PUT, RequestMethod.GET, RequestMethod.DELETE})
 public class VehiculoRestFullController {
 
 	@Autowired
 	private IVehiculoService vehiculoService;
 	
 	@PutMapping(path = "/retiro")//?nReserva=xxxx
+	@CrossOrigin(origins="http://localhost:8080/")
 	public String retiraVehiculoReservado(@RequestParam("nReserva") Integer nReserva) {
 		String msj = "vehiculo retirado correctamente";
 		try {
