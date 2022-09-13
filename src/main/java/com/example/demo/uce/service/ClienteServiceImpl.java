@@ -42,8 +42,8 @@ public class ClienteServiceImpl implements IClienteService {
 		for(Cliente c : lstClientes) {
 			lstClientesTo.add(convertirClienteTo(c));
 		}
-		lstClientesTo.sort(Comparator.comparing(ClienteTo::getValorTotal));
-		return lstClientesTo.stream().sorted(Collections.reverseOrder()).toList();
+		lstClientesTo.sort(Comparator.comparing(ClienteTo::getValorTotal).reversed());
+		return lstClientesTo;
 	}
 	
 	private ClienteAuxTo convertirCliAuxTo(Cliente cliente) {
