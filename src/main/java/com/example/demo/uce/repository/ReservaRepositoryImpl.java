@@ -1,5 +1,8 @@
 package com.example.demo.uce.repository;
 
+import java.time.LocalDate;
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
@@ -33,6 +36,13 @@ public class ReservaRepositoryImpl implements IReservaRespository {
 		this.entityManager.merge(reserva);
 	}
 
+	@Override
+	public List<Reserva> reporteReserva(LocalDate fechaInicio, LocalDate fechaFin) {
+		TypedQuery<Reserva> myQuery = this.entityManager
+				.createQuery("SELECT r FROM Reserva r WHERE r.fechaInicio >= :fechaInicio AND r.fechaFin <= :fechaFin",Reserva.class);
+		myQuery.setParameter("fechaInicio", fechaInicio);
+		myQuery.setParameter("fechaFin", fechaFin);
+		return myQuery.getResultList();
+	}
 	
-
 }

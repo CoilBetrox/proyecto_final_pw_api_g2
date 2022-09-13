@@ -29,6 +29,9 @@ public class VehiculoServiceImpl implements IVehiculoService {
 	@Autowired
 	private IClienteService clienteService;
 	
+	@Autowired
+	private IReservaService reservaService;
+	
 	@Override
 	public void crear(Vehiculo vehiculo) {
 		this.vehiculoRepository.crear(vehiculo);
@@ -63,9 +66,9 @@ public class VehiculoServiceImpl implements IVehiculoService {
 		if (disponible == "ND") {
 			return "El vehiculo ya está reservado";
 		}else {
-			Vehiculo vehiculo = vehiculoRepository.buscaVehiculoPorPlaca(placa);
+			Vehiculo vehiculo = this.vehiculoRepository.buscaVehiculoPorPlaca(placa);
 			Reserva reserva = new Reserva();
-			reserva.setFechaFin(fInicio);
+			reserva.setFechaInicio(fInicio);
 			reserva.setFechaFin(fFin);
 			
 			Double subtotal = (double)(diasReservado(fInicio, fFin) * vehiculo.getValorDia());
@@ -77,10 +80,12 @@ public class VehiculoServiceImpl implements IVehiculoService {
 			reserva.setNumeroReserva(num);
 			reserva.setEstado("G");
 			
-			Cliente cliente = clienteService.buscarClienteCedula(cedula);
+			Cliente cliente = this.clienteService.buscarClienteCedula(cedula);
 			reserva.setCliente(cliente);
+			reserva.setVehiculo(vehiculo);
 			
-			vehiculoRepository.actualiza(vehiculo);
+			this.reservaService.crearReserva(reserva);
+			this.vehiculoRepository.actualiza(vehiculo);
 			return num.toString();
 		}
 		

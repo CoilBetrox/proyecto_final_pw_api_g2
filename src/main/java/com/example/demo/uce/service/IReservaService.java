@@ -1,5 +1,8 @@
 package com.example.demo.uce.service;
 
+import java.time.LocalDate;
+import java.util.List;
+
 import com.example.demo.uce.repository.modelo.Reserva;
 import com.example.demo.uce.service.to.ReservaTo;
 
@@ -12,5 +15,7 @@ public interface IReservaService {
 	public void actualiza(Reserva reserva);
 	
 	public ReservaTo buscaReservaNumeroTo(Integer nReserva);
+	
+	//public List<Reserva> reporteReserva(LocalDate fechaInicio, LocalDate fechaFin);
 
 }

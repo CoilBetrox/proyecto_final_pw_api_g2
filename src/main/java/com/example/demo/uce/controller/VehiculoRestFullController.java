@@ -52,9 +52,9 @@ public class VehiculoRestFullController {
 		return ResponseEntity.ok(vehiculoService.buscaVehiculoPorPlaca(placa));
 	}
 	
-	@PostMapping(path = "/reservacion", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(path = "/reserva", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<String> reservaVehiculo(@RequestBody ReservaAux reserva) {
-		return ResponseEntity.ok(vehiculoService.reservaVehiculo(reserva.getPlaca(), reserva.getCiCliente(), reserva.getFechaFin(), reserva.getFechaFin()));
+		return ResponseEntity.ok(vehiculoService.reservaVehiculo(reserva.getPlaca(), reserva.getCiCliente(), reserva.getFechaInicio(), reserva.getFechaFin()));
 	}
 	
 }
