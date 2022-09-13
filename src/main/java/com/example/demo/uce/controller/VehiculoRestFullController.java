@@ -58,8 +58,8 @@ public class VehiculoRestFullController {
 				.ok(this.vehiculoService.reservaVehiculo(reserva.getPlaca(), reserva.getCiCliente(), reserva.getFechaInicio(), reserva.getFechaFin(), reserva.getNumeroTarjeta()));
 	}
 	
-	@GetMapping(path = "/{placa}/{fechaInicio}/{fechaFin}",produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<String> buscaVehiculoPorPlacaFecha(@PathVariable("placa") String placa, @PathVariable("fechaInicio") String fechaInicio, @PathVariable("fechaFin") String fechaFin) {
+	@GetMapping(path = "/busqueda",produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<String> buscaVehiculoPorPlacaFecha(@RequestParam("placa") String placa, @RequestParam("fechaInicio") String fechaInicio, @RequestParam("fechaFin") String fechaFin) {
 		return ResponseEntity
 				.ok(this.vehiculoService.compruebaVehiculoPorPlacaFecha(placa, fechaInicio, fechaFin));
 	}
