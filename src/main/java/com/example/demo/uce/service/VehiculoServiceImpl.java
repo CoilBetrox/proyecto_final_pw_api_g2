@@ -47,6 +47,11 @@ public class VehiculoServiceImpl implements IVehiculoService {
 		VehiculoTo vehiculoFin = convertir(vehiculo);
 		return vehiculoFin;
 	}
+	
+	@Override
+	public Vehiculo buscaVehiculoPlaca(String placa) {
+		return this.vehiculoRepository.buscaVehiculoPorPlaca(placa);
+	}
 
 	@Override
 	public void actualiza(Vehiculo vehiculo) {

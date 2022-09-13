@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import com.example.demo.uce.controller.ReservaRestFullController;
 import com.example.demo.uce.repository.IReservaRespository;
 import com.example.demo.uce.repository.modelo.Reserva;
-import com.example.demo.uce.service.to.ReservaAux;
+import com.example.demo.uce.repository.modelo.Vehiculo;
 import com.example.demo.uce.service.to.ReservaReporteTo;
 import com.example.demo.uce.service.to.ReservaTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
@@ -22,12 +22,27 @@ public class ReserveServiceImpl implements IReservaService {
 	
 	@Autowired
 	private IReservaRespository reservaRespository;
+	
+	@Autowired
+	private IVehiculoService vehiculoService;
 
 	@Override
 	public void crearReserva(Reserva reserva) {
 		this.reservaRespository.crearReserva(reserva);
 	}
 
+	@Override
+	public void retiraVehiculoReservado(Integer nReserva) {
+		Reserva aux = this.reservaRespository.buscaReservaNumero(nReserva);
+		if(aux!=null) {
+			Vehiculo v = this.vehiculoService.buscaVehiculoPlaca(aux.getVehiculo().getPlaca());
+			v.setDisponible("ND");
+			this.vehiculoService.actualiza(v);
+			aux.setEstado("E");
+			this.actualiza(aux);
+		}
+	}
+	
 	@Override
 	public Reserva buscaReservaNumero(Integer nReserva) {
 		return this.reservaRespository.buscaReservaNumero(nReserva);

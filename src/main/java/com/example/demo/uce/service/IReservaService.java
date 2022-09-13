@@ -11,6 +11,8 @@ public interface IReservaService {
 
 	public void crearReserva(Reserva reserva);
 	
+	public void retiraVehiculoReservado(Integer nReserva);
+	
 	public Reserva buscaReservaNumero(Integer nReserva);
 	
 	public void actualiza(Reserva reserva);
@@ -18,5 +20,6 @@ public interface IReservaService {
 	public ReservaTo buscaReservaNumeroTo(Integer nReserva);
 	
 	public List<ReservaReporteTo> reporteReserva(String fechaInicio, String fechaFin);
+	
 	
 }

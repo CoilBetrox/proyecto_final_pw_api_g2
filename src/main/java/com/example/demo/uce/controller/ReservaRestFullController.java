@@ -30,10 +30,7 @@ public class ReservaRestFullController {
 	public String retiraVehiculoReservado(@RequestParam("nReserva") Integer nReserva) {
 		String msj = "vehiculo retirado correctamente";
 		try {
-			Reserva aux = this.reservaService.buscaReservaNumero(nReserva);
-			aux.getVehiculo().setDisponible("ND");
-			aux.setEstado("E");
-			this.reservaService.actualiza(aux);
+			this.reservaService.retiraVehiculoReservado(nReserva);
 		} catch (Exception e) {
 			msj = "Error al retirar el vehículo" + e;
 		}
